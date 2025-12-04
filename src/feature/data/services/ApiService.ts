@@ -1,36 +1,14 @@
-class ApiService {
-    private baseUrl = 'https://fakestoreapi.com';
-
-    async getAllProducts(): Promise {
-        try {
-            const response = await fetch(`${this.baseUrl}/products`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(`Failed to fetch products: ${error.message}`);
-            }
-            throw new Error('An unknown error occurred while fetching products');
-        }
+export class ApiService {
+    async getAllProducts(): Promise<any[]> {
+        const res = await fetch('https://fakestoreapi.com/products');
+        return res.json();
     }
 
-    async getProductsByCategory(category: string): Promise {
-        try {
-            const response = await fetch(`${this.baseUrl}/products/category/${category}`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(`Failed to fetch category products: ${error.message}`);
-            }
-            throw new Error('An unknown error occurred while fetching category products');
-        }
+    async getProductsByCategory(category: string): Promise<any[]> {
+        const res = await fetch(
+            `https://fakestoreapi.com/products/category/${encodeURIComponent(category)}`
+        );
+        return res.json();
     }
 }
 

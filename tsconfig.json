@@ -9,6 +9,7 @@
     ],
     "module": "ESNext",
     "skipLibCheck": true,
+    "noImplicitAny": false,
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -34,8 +35,7 @@
   ],
   "references": [
     {
-      "path": "./tsconfig.node.json",
-      "composite": true
+      "path": "./tsconfig.node.json"
     }
   ]
 }

@@ -1,18 +1,25 @@
 export default {
-    content: [
-        "./index.html",
-        "./src/**/*.{js,ts,jsx,tsx}",
-    ],
+    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
+        container: {
+            center: true,
+            padding: {
+                DEFAULT: "1rem",
+                sm: "1rem",
+                lg: "2rem",
+                xl: "4rem",
+            },
+        },
         extend: {
             colors: {
-                main: '#2B50D2',
-                second: '#ffffff',
+                main: '#007bff',    // Primary blue
+                second: '#ffffff',  // Secondary white
             },
-            fontFamily: {
-                arabic: ['IBM Plex Sans Arabic', 'sans-serif'],
+            screens: {
+                'xs': '420px',
+                // keep default sm/md/lg/xl/2xl
             },
         },
     },
     plugins: [],
-}
+};
