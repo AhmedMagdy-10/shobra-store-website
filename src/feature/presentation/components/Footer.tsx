@@ -16,10 +16,10 @@ const Footer: React.FC = () => {
                                 href="tel:+201234567890"
                                 className="flex items-center gap-2 md:gap-3 hover:bg-white/10 px-4 py-2 rounded-lg transition-all duration-300 group"
                             >
-                                <Phone size={18} className="text-white group-hover:scale-110 transition-transform" />
                                 <span className="text-sm md:text-base font-medium text-white">
-                                    +20 1069727438
+                                    01069727438
                                 </span>
+                                <Phone size={18} className="text-white group-hover:scale-110 transition-transform" />
                             </a>
                             <a
                                 href="digital.t@shubra.net"
@@ -72,25 +72,60 @@ const Footer: React.FC = () => {
                             </a>
                         </div>
 
-                        {/* RIGHT: Logo Image */}
+                        {/* RIGHT: Logo - Icon + Text */}
                         <div className="flex justify-start order-1">
-                            <img
-                                src="src/assets/shubra logo.png"
-                                alt="Shobra Store Logo"
-                                className="h-10 md:h-12 lg:h-14 w-auto object-contain filter brightness-0 invert"
-                                style={{
-                                    maxWidth: '180px',
-                                }}
-                                onError={(e) => {
-                                    const target = e.target as HTMLImageElement;
-                                    target.style.display = 'none';
-                                    const fallback = document.createElement('div');
-                                    fallback.className = 'bg-white/20 rounded-xl flex items-center justify-center px-6 py-3 shadow-lg';
-                                    fallback.innerHTML = '<span class="text-white text-xl md:text-2xl font-bold">شبرا ستور</span>';
-                                    target.parentNode?.appendChild(fallback);
-                                }}
-                            />
+                            <div className="flex items-center gap-2 md:gap-3">
+                                {/* Icon Container */}
+                                <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-2.5 md:p-3 shadow-lg border border-white/10">
+                                    <svg
+                                        width="28"
+                                        height="28"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        className="text-white"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <line
+                                            x1="3"
+                                            y1="6"
+                                            x2="21"
+                                            y2="6"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M16 10a4 4 0 0 1-8 0"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                </div>
+
+                                {/* Text */}
+                                <div className="flex flex-col">
+                                    <h1 className="text-xl md:text-2xl font-bold text-white leading-tight">
+                                        شبرا الطائف
+                                    </h1>
+                                    <p className="text-xs text-white/70 hidden md:block">
+                                        Shobra Store
+                                    </p>
+                                </div>
+                            </div>
                         </div>
+
+
+
                     </div>
 
                     {/* Divider */}
@@ -123,3 +158,5 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
+
+// Paste into browser console

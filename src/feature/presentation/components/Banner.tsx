@@ -1,79 +1,78 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+
 
 const Banner: React.FC = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
 
     const bannerImages = [
-        "src/assets/Shop10.jpeg",
-        "src/assets/shop.jpeg",
-        "src/assets/shop5.jpeg",
+        // 'src/assets/banner-shop.jpg',
+        // 'src/assets/shop5.jpg',
+        // 'src/assets/shop10.jpeg'
+        'https://i.pinimg.com/736x/15/41/b9/1541b903604e20c860865b32c7eac9f9.jpg',
+        'https://i.pinimg.com/1200x/4b/15/ce/4b15ce66c1de5d23f577b0bf591b32ac.jpg',
+        'https://i.pinimg.com/736x/11/2e/a4/112ea49b7e96737adc5ad4031b3fddb4.jpg',
 
     ];
+
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [imageErrors, setImageErrors] = useState<boolean[]>(
+        new Array(bannerImages.length).fill(false)
+    );
 
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
-        }, 5000);
+        }, 3000);
         return () => clearInterval(timer);
     }, []);
 
-    const handlePrev = () => {
-        setCurrentSlide((prev) => (prev - 1 + bannerImages.length) % bannerImages.length);
-    };
-
-    const handleNext = () => {
-        setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
+    const handleImageError = (index: number) => {
+        console.error(`Failed to load banner image ${index + 1}`);
+        setImageErrors((prev) => {
+            const newErrors = [...prev];
+            newErrors[index] = true;
+            return newErrors;
+        });
     };
 
     return (
-        <div className="w-full flex justify-center mb-8 px-4">
-            {/* Main container - exact 1348:718 aspect ratio */}
-            <div className="relative w-full max-w-[1348px] rounded-3xl overflow-hidden shadow-2xl border-4 border-main">
-                {/* Aspect ratio container */}
-                <div className="w-full min-h-[200px] md:aspect-[1348/718] relative"> {/* 718/1348 = 53.26% */}
-                    {bannerImages.map((img, index) => (
+        <div className="relative w-full h-40 md:h-56 rounded-2xl overflow-hidden shadow-lg mb-6 bg-gray-200">
+            {bannerImages.map((banner, index) => (
+                <div
+                    key={index}
+                    className={`absolute w-full h-full transition-opacity duration-700 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+                        }`}
+                >
+                    {imageErrors[index] ? (
+                        // Fallback UI
+                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-700">
+                            <div className="text-center text-white">
+                                <h2 className="text-2xl font-bold mb-2">عروض خاصة</h2>
+                                <p className="text-sm">متجر شبرا</p>
+                            </div>
+                        </div>
+                    ) : (
                         <img
-                            key={index}
-                            src={img}
+                            src={banner}
                             alt={`Banner ${index + 1}`}
-                            className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
-                                }`}
+                            className="w-full h-full object-cover"
+                            onError={() => handleImageError(index)}
+                            loading="lazy"
                         />
-                    ))}
-
-                    {/* Navigation buttons */}
-                    <button
-                        onClick={handlePrev}
-                        className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 bg-main/90 hover:bg-main p-2 md:p-3 rounded-full z-10 transition active:scale-95 shadow-lg"
-                        aria-label="Previous banner"
-                    >
-                        <ChevronLeft size={18} className="text-white" />
-                    </button>
-
-                    <button
-                        onClick={handleNext}
-                        className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 bg-main/90 hover:bg-main p-2 md:p-3 rounded-full z-10 transition active:scale-95 shadow-lg"
-                        aria-label="Next banner"
-                    >
-                        <ChevronRight size={18} className="text-white" />
-                    </button>
-
-                    {/* Indicators */}
-                    <div className="absolute bottom-3 md:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                        {bannerImages.map((_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => setCurrentSlide(index)}
-                                className={`rounded-full transition ${index === currentSlide
-                                    ? 'bg-main w-8 h-3'
-                                    : 'bg-white/60 w-3 h-3'
-                                    }`}
-                                aria-label={`Go to banner ${index + 1}`}
-                            />
-                        ))}
-                    </div>
+                    )}
                 </div>
+            ))}
+
+            {/* Dots Indicator */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {bannerImages.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => setCurrentSlide(index)}
+                        className={`h-2 rounded-full transition-all ${index === currentSlide ? 'bg-white w-6' : 'bg-white/50 w-2'
+                            }`}
+                        aria-label={`Go to slide ${index + 1}`}
+                    />
+                ))}
             </div>
         </div>
     );

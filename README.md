@@ -1,73 +1,133 @@
-# React + TypeScript + Vite
+# 🛍️ Shobra Store - React Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+موقع متجر إلكتروني متجاوب مبني بـ React و TypeScript مع دعم كامل للغة العربية وتصميم عصري.
 
-Currently, two official plugins are available:
+## ✨ المميزات
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🏠 صفحة رئيسية مع عرض تلقائي للبانر
+- 🔍 تصفية المنتجات حسب الفئات
+- 🛒 سلة تسوق متقدمة
+- 📱 تصميم متجاوب (Mobile, Tablet, Desktop)
+- 🌐 دعم RTL للغة العربية
+- ⚡ أداء سريع مع Vite
+- 🎨 تصميم عصري مع Tailwind CSS
 
-## React Compiler
+## 🛠️ التقنيات المستخدمة
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 18** - مكتبة UI
+- **TypeScript** - Type Safety
+- **Vite** - Build Tool
+- **Tailwind CSS** - Framework للتصميم
+- **Lucide React** - مكتبة الأيقونات
+- **FakeStore API** - مصدر البيانات
+- **Context API** - إدارة الحالة
 
-## Expanding the ESLint configuration
+## 📁 البنية المعمارية
+src/
+├── core/
+│   ├── theme/         # الألوان والأنماط
+│   └── constants/     # الثوابت
+├── features/
+│   └── products/
+│       ├── data/
+│       │   ├── models/      # TypeScript Interfaces
+│       │   └── services/    # API Calls
+│       └── presentation/
+│           ├── context/     # State Management
+│           ├── pages/       # الصفحات
+│           └── components/  # المكونات
+├── App.tsx
+└── main.tsx
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 طريقة التشغيل
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### المتطلبات الأساسية
+- Node.js (v18 أو أحدث)
+- npm أو yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### خطوات التشغيل
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. **استنساخ المشروع**
+```bash
+git clone https://github.com/YOUR_USERNAME/shobra-store-react-website.git
+cd shobra-store-react-website
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. **تثبيت الحزم**
+```bash
+npm install
 ```
+
+3. **تشغيل الموقع**
+```bash
+npm run dev
+```
+
+الموقع سيعمل على: `http://localhost:5173`
+
+4. **بناء للإنتاج**
+```bash
+npm run build
+```
+
+5. **معاينة الإنتاج**
+```bash
+npm run preview
+```
+
+## 📱 الصفحات
+
+- **Home**: عرض المنتجات مع بانر وفلتر
+- **Product Details Modal**: تفاصيل المنتج في نافذة منبثقة
+- **Cart**: سلة التسوق مع إدارة الكميات
+- **Orders**: صفحة الطلبات (قريباً)
+- **Settings**: صفحة الإعدادات (قريباً)
+
+## 🎨 التصميم
+
+- **Mobile First**: يبدأ من الموبايل ثم يتوسع
+- **Responsive**: يعمل على جميع الأحجام
+- **RTL Support**: دعم كامل للكتابة من اليمين لليسار
+- **Dark Mode Ready**: جاهز لوضع الظلام
+
+## 📦 الحزم المستخدمة
+```json
+{
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "lucide-react": "^0.294.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  }
+}
+```
+
+## 🌐 النشر
+
+- **firebase**
+- **GitHub Pages**
+
+### النشر على Vercel:
+```bash
+npm install -g vercel
+vercel
+```
+
+## 👨‍💻 المطور
+
+تم تطوير المشروع كجزء من تكليف Shobra Store
+
+## 📄 الترخيص
+
+MIT License
+
+## 📞 الدعم
+
+للاستفسارات، يرجى فتح Issue على GitHub

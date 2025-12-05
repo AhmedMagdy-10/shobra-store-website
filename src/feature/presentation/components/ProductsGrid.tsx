@@ -110,10 +110,14 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ products, onProductClick, l
                         <p className="text-lg font-bold text-main mb-3">${product.price.toFixed(2)}</p>
                     </div>
 
-                    {/* Action Buttons - Equal spacing */}
+
+                    {/* Action Buttons - Responsive for mobile */}
+
+
+                    {/* Action Buttons */}
                     <div className="flex justify-between items-center gap-3 mt-auto w-full">
-                        {/* Quantity Control with dynamic text */}
-                        <div className="flex items-center bg-white border-2 border-main rounded-xl overflow-hidden flex-1">
+                        {/* Quantity Control - Hidden on mobile, visible from sm screens */}
+                        <div className="hidden sm:flex items-center bg-white border-2 border-main rounded-xl overflow-hidden flex-1">
                             <button
                                 onClick={(e) => {
                                     decreaseQuantity(product.id, e);
@@ -164,14 +168,15 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ products, onProductClick, l
                             </button>
                         </div>
 
-                        {/* Add to Cart Button */}
+                        {/* Add to Cart Button - Full width on mobile, normal width on desktop */}
                         <button
                             onClick={(e) => handleAddToCart(product, e)}
-                            className="bg-main text-white px-4 py-2 rounded-xl hover:bg-blue-700 active:scale-95 transition-all flex items-center justify-center gap-1 font-bold text-sm whitespace-nowrap shadow-md hover:shadow-lg flex-1"
+                            className="bg-main text-white px-4 py-2 rounded-xl hover:bg-blue-700 active:scale-95 transition-all flex items-center justify-center gap-1 font-bold text-sm whitespace-nowrap shadow-md hover:shadow-lg w-full sm:w-auto sm:flex-1"
                             aria-label="أضف للسلة"
                         >
                             <ShoppingCart size={16} />
-                            <span className="hidden sm:inline">أضف</span>
+                            <span className="hidden sm:inline">أضف للسلة</span>
+                            <span className="sm:hidden">إضافة</span>
                         </button>
                     </div>
 
